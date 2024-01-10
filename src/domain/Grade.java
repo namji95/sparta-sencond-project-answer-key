@@ -12,7 +12,6 @@ public class Grade {
         this.turn = turn;
         this.score = score;
         this.type = type;
-        setRank(score);
     }
 
     public int getTurn() {
@@ -30,45 +29,5 @@ public class Grade {
     // 점수를 세팅하는 메서드, 점수가 입력되자마자 등급이 자동으로 설정됨
     public void setScore(int score) {
         this.score = score;
-        setRank(score);
-    }
-    
-    private void setRank(int score) {
-        if(type == CourseType.MANDATORY) {
-            rank = mandatoryRankType(score);
-            return;
-        }
-        
-        rank = optionalRankType(score);
-    }
-
-    private char mandatoryRankType(int score) {
-        if(score >= 95)
-            return 'A';
-        else if(score >= 90)
-            return 'B';
-        else if(score >= 80)
-            return 'C';
-        else if(score >= 70)
-            return 'D';
-        else if(score >= 60)
-            return 'F';
-
-        return 'N';
-    }
-
-    private char optionalRankType(int score) {
-        if(score >= 90)
-            return 'A';
-        else if(score >= 80)
-            return 'B';
-        else if(score >= 70)
-            return 'C';
-        else if(score >= 60)
-            return 'D';
-        else if(score >= 50)
-            return 'F';
-
-        return 'N';
     }
 }
