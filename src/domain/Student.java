@@ -4,8 +4,9 @@ import java.util.List;
 
 public class Student {
     private final long accountId;
-    private String name;
+    private final String name;
     private final List<Course> myCourse;
+    private String state;
 
     public Student(long accountId, String name, List<Course> myCourse) {
         this.accountId = accountId;
@@ -26,6 +27,5 @@ public class Student {
         return myCourse;
     }
 
-    public void setName(String name){ this.name = name;}
-
+    public String getState(){return state;}
 }
