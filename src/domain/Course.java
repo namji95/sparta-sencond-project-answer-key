@@ -36,4 +36,5 @@ public class Course {
     public List<Grade> getGrades() {
         return grades;
     }
+    public int getRoundScore(int round){ return grades.get(round).getScore();}
 }
