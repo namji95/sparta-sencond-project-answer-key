@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Student {
     private final long accountId;
-    private final String name;
+    private String name;
     private final List<Course> myCourse;
 
     public Student(long accountId, String name, List<Course> myCourse) {
@@ -25,4 +25,7 @@ public class Student {
     public List<Course> getMyCourse() {
         return myCourse;
     }
+
+    public void setName(String name){ this.name = name;}
+
 }

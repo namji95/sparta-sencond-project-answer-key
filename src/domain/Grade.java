@@ -7,9 +7,12 @@ public class Grade {
     private int score;              // 점수
     private char rank;              // 등급
 
+
+
     public Grade(int score,CourseType type) {
         this.score = score;
         this.type = type;
+
     }
     public int getScore() {
         return score;
@@ -23,4 +26,6 @@ public class Grade {
     public void setScore(int score) {
         this.score = score;
     }
+
+
 }
