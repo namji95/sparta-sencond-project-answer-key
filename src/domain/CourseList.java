@@ -13,7 +13,6 @@ public enum CourseList {
     SPRINGSECURITY("Spring Security",CourseType.OPTIONAL),
     REDIS("Redis",CourseType.OPTIONAL),
     MONGODB("MongoDB",CourseType.OPTIONAL);
-
     private final String courseName;
     private final CourseType type;
 
@@ -22,7 +21,8 @@ public enum CourseList {
         this.type = type;
     }
 
-    // 과목에 대한 정보를 찾을 때, 파라미터 값으로 과목 이름을 넣고 해당 괌고이 없을 경우 에러 발생
+    // 과목에 대한 정보를 찾고, 반환 타입으로 과목에 대한 인스턴스를 생성해서 반환
+    // 과목 이름이 없다면 에러 발생
     public static Course getCourseList(String name) {
         long count = 1;
         for(CourseList courseList : CourseList.values()) {
@@ -31,10 +31,8 @@ public enum CourseList {
 
             count++;
         }
-
         throw new IllegalArgumentException();
     }
-
     // 과목의 이름을 넘겨줍니다.
     public String getCourseName() {
         return courseName;
