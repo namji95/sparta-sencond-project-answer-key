@@ -15,11 +15,6 @@ public class Course {
         this.type = type;
     }
 
-    // 점수를 파라미터로 받아와서 grade 객체를 생성하여 List에 추가한다.
-    public void addGrade(int score) {
-        grades.add(new Grade(grades.size()+1,score,type));
-    }
-
     // 시험 횟수가 10회이면 true, 아니라면 false 반환
     public boolean fulfillSize() {
         return grades.size() == 10;
