@@ -23,4 +23,41 @@ public class Grade {
     public void setScore(int score) {
         this.score = score;
     }
+
+    public String mandatoryRank(int score) {
+        String rank;
+
+        if(score >=95 && score <=100)
+            rank = "A";
+        else if(score >=90 && score <=94)
+            rank = "B";
+        else if(score >=80 && score <=89)
+            rank = "C";
+        else if(score >=70 && score <=79)
+            rank = "D";
+        else if(score >=60 && score <=69)
+            rank = "F";
+        else {
+            rank = "N";
+        }
+        return rank;
+    }
+    public String optionalRank(int score) {
+        String rank;
+
+        if(score >=90&& score <=100)
+            rank = "A";
+        else if(score >=80 && score <=89)
+            rank = "B";
+        else if(score >=70 && score <=79)
+            rank = "C";
+        else if(score >=60 && score <=69)
+            rank = "D";
+        else if(score >=50 && score <=59)
+            rank = "F";
+        else {
+            rank = "N";
+        }
+        return rank;
+    }
 }
