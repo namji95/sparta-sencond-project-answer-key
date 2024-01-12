@@ -1,8 +1,7 @@
 package score_avg;
 
 import console.Console;
-import domain.CourseList;
-import domain.Student;
+import domain.*;
 
 import java.util.InputMismatchException;
 import java.util.List;
@@ -47,6 +46,22 @@ public class choose {
             }
         }
 
+    }
+    public static CourseList choose_course(Student student){
+        while(true){
+            try {
+                CourseList courseList = choose_course();
+                if(student.course_check(courseList.getIdNumber())){
+                    return courseList;
+                }
+                else{
+                    throw new out_of_range();
+                }
+            }catch (out_of_range e){
+                System.out.printf("%s 학생이 수강하는 수업이 아닙니다. 다시 입력해 주세요.\n",student.getName());
+            }
+
+        }
     }
     //문자열을 입력받아 state리스트에 존재하는 상태라면 return 해주는 메서드
     public static String choose_state(){

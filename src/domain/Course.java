@@ -41,4 +41,6 @@ public class Course {
     public int getRoundScore(int round){ return grades.get(round).getScore();}
 
     public char getRoundRank(int round){return grades.get(round).getRank();}
+
+    public void setGrades(List<Grade> a){this.grades =a; } //임시추가 없앨것
 }

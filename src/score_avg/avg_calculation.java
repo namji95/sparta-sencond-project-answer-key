@@ -9,26 +9,33 @@ public class avg_calculation {
     List<String> state_test = new ArrayList<String>(Arrays.asList("red","green","blue"));
     //학생들의 여러 점수를 조회하는 스크린을 연결시켜주는 메서드
     public void avg_screen(List<Student> students){
-        Notice();
-        while (true) {
-            switch (choose.choose_num()){
+        boolean run = true;
+        while (run) {
+            Notice();
+            try{
+            switch (choose.choose_num()) {
                 case 1:
-                    course_all_round_avg_screen(students,choose.choose_course());
+                    course_all_round_avg_screen(students, choose.choose_course());
                     break;
                 case 2:
-                    course_choose_round_avg_screen(students,choose.choose_course(),choose.choose_round());
+                    course_choose_round_avg_screen(students, choose.choose_course(), choose.choose_round());
                     break;
                 case 3:
-                    state_mandatory_course_all_round_avg(choose_student_state(students,choose.choose_state()));
+                    state_mandatory_course_all_round_avg(choose_student_state(students, choose.choose_state()));
                     break;
                 case 4:
-                    state_optiona_course_all_round_avg(choose_student_state(students,choose.choose_state()));
+                    state_optiona_course_all_round_avg(choose_student_state(students, choose.choose_state()));
+                    break;
+                case 5:
+                    System.out.println("메인화면으로 돌아갑니다...");
+                    run = false;
                     break;
                 default:
-                    continue;
+                    throw new out_of_range();
             }
-            System.out.println("메인화면으로 돌아갑니다...");
-            break;
+            }catch (Exception e){
+                System.out.println("아직 점수를 입력받지 않은 학생이 있습니다.");
+            }
         }
     }
     //학생리스트,과목,회차를 받아와 과목의 고유번호를 대조해 학생들 중 매개변수로 받은 과목을 수강하는 학생이 있다면 점수를 추출하여
@@ -48,6 +55,7 @@ public class avg_calculation {
     }
     //학생리스트,과목을 받아와 특정 과목에 모든 회차의 평균을 출력하는 메서드
     public void course_all_round_avg_screen(List<Student> student,CourseList courseList){
+        char error = course_round_avg(student,courseList,0);
         System.out.printf("%s 과목의 회차별 등급 평균 \n",courseList.getCourseName());
         for(int round =0; round<10; round++){
             System.out.printf("%d 회차: %c 등급 \n",round+1,course_round_avg(student,courseList,round));

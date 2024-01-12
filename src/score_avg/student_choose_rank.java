@@ -7,10 +7,14 @@ import domain.Student;
 //나중에 합칠것
 public class student_choose_rank {
     public void screen(Student student){
-        System.out.println("예시 1.입력시 ");
-        student_course_all_round_rank(student,choose.choose_course());
-        System.out.println("예시 2 입력시");
-        student_course_choose_round_rank(student,choose.choose_course(),choose.choose_round());
+        try {
+            System.out.println("예시 1.입력시 ");
+            student_course_all_round_rank(student, choose.choose_course(student));
+            System.out.println("예시 2 입력시");
+            student_course_choose_round_rank(student, choose.choose_course(student), choose.choose_round());
+        }catch (NullPointerException e){
+            System.out.println("현재 학생의 랭크가 들어있지 않습니다.");
+        }
     }
     //학생,과목,회차 정보를 받아 학생안에 과목목록리스트에서 매개변수로 받아온 과목의 고유번호를 대조해 같다면 학생이 가지고 그 과목의 등급을 출력시켜주는 메서드
     //등급을 출력시킬 때 위에 메서드와 같이 묶어서 하나로 두고 점수를 받아 랭크를 얻는 것도 가능하지만 다양한 메서드를 만들어 보기 위해 서로 다른 방향에서
