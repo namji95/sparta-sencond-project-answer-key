@@ -13,33 +13,29 @@ public enum CourseList {
     SPRINGSECURITY(102,"Spring Security",CourseType.OPTIONAL),
     REDIS(103,"Redis",CourseType.OPTIONAL),
     MONGODB(104,"MongoDB",CourseType.OPTIONAL);
-
     private final long idNumber;
     private final String courseName;
     private final CourseType type;
 
-    CourseList(long idNumber, String courseName, CourseType type) {
+
+    CourseList(long idNumber,String courseName, CourseType type) {
         this.idNumber = idNumber;
         this.courseName = courseName;
         this.type = type;
     }
 
-    // 과목에 대한 정보를 찾을 때, 파라미터 값으로 과목 이름을 넣고 해당 괌고이 없을 경우 에러 발생
-    public static CourseList getCourseList(String name) {
-        int count = 1;
+    // 과목에 대한 정보를 찾고, 반환 타입으로 과목에 대한 인스턴스를 생성해서 반환
+    // 과목 이름이 없다면 에러 발생
+    public static Course getCourseList(String name) {
+        long count = 1;
         for(CourseList courseList : CourseList.values()) {
             if(courseList.getCourseName().equals(name))
-                return courseList;
-        }
+                return new Course(count,courseList.getCourseName(),courseList.getType(),);
 
+            count++;
+        }
         throw new IllegalArgumentException();
     }
-
-    // 과목의 고유 번호를 반환값으로 넘겨줍니다.
-    public long getIdNumber() {
-        return idNumber;
-    }
-
     // 과목의 이름을 넘겨줍니다.
     public String getCourseName() {
         return courseName;
@@ -48,5 +44,18 @@ public enum CourseList {
     // 과목의 타입을 넘겨줍니다.
     public CourseType getType() {
         return type;
+    }
+
+    public long getIdNumber() { return idNumber;}
+
+    public static CourseList getCourseList_search(String name) {
+        long count = 1;
+        for(CourseList courseList : CourseList.values()) {
+            if(courseList.getCourseName().equals(name))
+                return courseList;
+
+            count++;
+        }
+        throw new IllegalArgumentException();
     }
 }

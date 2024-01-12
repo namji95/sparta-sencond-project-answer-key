@@ -2,11 +2,10 @@ package score_avg;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
+import console.*;
 import domain.*;
 
 public class avg_calculation {
-    Scanner sc = new Scanner(System.in);
     List<String> state_test = new ArrayList<String>(Arrays.asList("red","green","blue"));
     //학생들의 여러 점수를 조회하는 스크린을 연결시켜주는 메서드
     public void avg_screen(List<Student> students){
@@ -20,15 +19,9 @@ public class avg_calculation {
                     course_choose_round_avg_screen(students,choose_course(),choose_round());
                     break;
                 case 3:
-                    student_course_all_round_rank(choose_idNumber(students),choose_course());
-                    break;
-                case 4:
-                    student_course_choose_round_rank(choose_idNumber(students),choose_course(),choose_round());
-                    break;
-                case 5:
                     state_mandatory_course_all_round_avg(choose_student_state(students,choose_state()));
                     break;
-                case 6:
+                case 4:
                     state_optiona_course_all_round_avg(choose_student_state(students,choose_state()));
                     break;
                 default:
@@ -149,14 +142,12 @@ public class avg_calculation {
         while (true) {
             try {
                 System.out.println("번호를 입력해 주세요.");
-                int choose = sc.nextInt();
-                sc.nextLine();
+                int choose = Console.inputInt();
                 if(choose>6||choose<1){
                     throw new InputMismatchException();
                 }
                 return choose;
             } catch (InputMismatchException e) {
-                sc = new Scanner(System.in);
                 System.out.println("잘못된 값을 입력하셨습니다. 다시 입력해 주세요.");
             }
         }
@@ -166,14 +157,12 @@ public class avg_calculation {
         while (true) {
             try {
                 System.out.println("학생의 고유번호를 입력해 주세요.");
-                int choose = sc.nextInt();
+                int choose = Console.inputInt();
                 if(find_student(students,choose)==null){
                     throw new InputMismatchException();
                 }
-                sc.nextLine();
                 return find_student(students,choose);
             } catch (InputMismatchException e) {
-                sc = new Scanner(System.in);
                 System.out.println("잘못된 값을 입력하셨습니다. 다시 입력해 주세요.");
             }
         }
@@ -183,10 +172,9 @@ public class avg_calculation {
         while (true) {
             try {
                 System.out.println("과목명을 입력해주세요.");
-                String choose = sc.nextLine();
-                return CourseList.getCourseList(choose);
+                String choose = Console.inputString();
+                return CourseList.getCourseList_search(choose);
             } catch (Exception e) {
-                sc = new Scanner(System.in);
                 System.out.println("잘못된 값을 입력하셨습니다. 다시 입력해 주세요.");
             }
         }
@@ -197,13 +185,12 @@ public class avg_calculation {
         while (true){
             try{
                 System.out.println("원하시는 상태를 입력해주세요.");
-                String state = sc.nextLine();
+                String state = Console.inputString();
                 if(!state_test.contains(state)){
                     throw new InputMismatchException();
                 }
                 return state;
             } catch (Exception e){
-                sc = new Scanner(System.in);
                 System.out.println("잘못된 값을 입력하셨습니다. 다시 입력해 주세요.");
             }
         }
@@ -213,14 +200,12 @@ public class avg_calculation {
         while (true) {
             try {
                 System.out.println("회차를 입력해 주세요.");
-                int choose = sc.nextInt();
-                sc.nextLine();
+                int choose = Console.inputInt();
                 if(choose>10||choose<1){
                     throw new InputMismatchException();
                 }
                 return choose-1;
             } catch (InputMismatchException e) {
-                sc = new Scanner(System.in);
                 System.out.println("잘못된 값을 입력하셨습니다. 다시 입력해 주세요.");
             }
         }
@@ -239,10 +224,8 @@ public class avg_calculation {
     public void Notice(){
         System.out.println("[ 점수 관리 시스템 ]");
         System.out.println("1. 특정 과목 회차별 평균 등급");
-        System.out.println("2. 특정 과목 특정 회차의 등급");
-        System.out.println("3. 특정 학생의 특정 과목 회차별 등급");
-        System.out.println("4. 특정 학생의 특정 과목 특정 회차의 등급");
-        System.out.println("5. 특정 상태의 필수 과목 회차별 등급");
-        System.out.println("6. 특정 상태의 선택 과목 회차별 등급");
+        System.out.println("2. 특정 과목 특정 회차의 평균 등급");
+        System.out.println("3. 특정 상태의 필수 과목 회차별 평균 등급");
+        System.out.println("4. 특정 상태의 선택 과목 회차별 평균 등급");
     }
 }

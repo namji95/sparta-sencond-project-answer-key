@@ -31,9 +31,13 @@ public class Main {
         li.add(g9);
         li.add(g10);
 
-        Course c1 = new Course(1, "Java", MANDATORY,li);
+        Course c1 = new Course(1, "Java", MANDATORY);
+        Course c2 = new Course(2, "Spring", MANDATORY);
+        Course c3 = new Course(3, "JPA", MANDATORY);
         List<Course> l = new ArrayList<Course>();
         l.add(c1);
+        l.add(c2);
+        l.add(c3);
         Student s1 = new Student(1,"실험체1",l);
         Student s2 = new Student(2,"실험체2",l);
         List<Student> ss = new ArrayList<Student>();

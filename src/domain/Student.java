@@ -14,7 +14,6 @@ public class Student {
         this.myCourse = myCourse;
     }
 
-
     public long getAccountId() {
         return accountId;
     }
