@@ -25,38 +25,38 @@ public class Grade {
     }
 
     public String mandatoryRank(int score) {
-        String rank;
+        char rank;
 
         if(score >=95 && score <=100)
-            rank = "A";
+            rank = 'A';
         else if(score >=90 && score <=94)
-            rank = "B";
+            rank = 'B';
         else if(score >=80 && score <=89)
-            rank = "C";
+            rank = 'C';
         else if(score >=70 && score <=79)
-            rank = "D";
+            rank = 'D';
         else if(score >=60 && score <=69)
-            rank = "F";
+            rank = 'F';
         else {
-            rank = "N";
+            rank = 'N';
         }
         return rank;
     }
     public String optionalRank(int score) {
-        String rank;
+        char rank;
 
         if(score >=90&& score <=100)
-            rank = "A";
+            rank = 'A';
         else if(score >=80 && score <=89)
-            rank = "B";
+            rank = 'B';
         else if(score >=70 && score <=79)
-            rank = "C";
+            rank = 'C';
         else if(score >=60 && score <=69)
-            rank = "D";
+            rank = 'D';
         else if(score >=50 && score <=59)
-            rank = "F";
+            rank = 'F';
         else {
-            rank = "N";
+            rank = 'N';
         }
         return rank;
     }
