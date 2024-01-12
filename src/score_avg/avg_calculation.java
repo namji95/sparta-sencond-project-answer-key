@@ -8,7 +8,6 @@ import domain.*;
 public class avg_calculation {
     Scanner sc = new Scanner(System.in);
     List<String> state_test = new ArrayList<String>(Arrays.asList("red","green","blue"));
-    List<Student> 예시 = new ArrayList<Student>();
     //학생들의 여러 점수를 조회하는 스크린을 연결시켜주는 메서드
     public void avg_screen(List<Student> students){
         Notice();
@@ -18,13 +17,13 @@ public class avg_calculation {
                     course_all_round_avg_screen(students,choose_course());
                     break;
                 case 2:
-                    course_choose_round_avg_screen(students,choose_course(),choose_num());
+                    course_choose_round_avg_screen(students,choose_course(),choose_round());
                     break;
                 case 3:
-                    student_course_all_round_rank(find_student(students,choose_num()),choose_course());
+                    student_course_all_round_rank(choose_idNumber(students),choose_course());
                     break;
                 case 4:
-                    student_course_choose_round_rank(find_student(students,choose_num()),choose_course(),choose_num());
+                    student_course_choose_round_rank(choose_idNumber(students),choose_course(),choose_round());
                     break;
                 case 5:
                     state_mandatory_course_all_round_avg(choose_student_state(students,choose_state()));
@@ -35,6 +34,7 @@ public class avg_calculation {
                 default:
                     continue;
             }
+            System.out.println("메인화면으로 돌아갑니다...");
             break;
         }
     }
@@ -85,7 +85,7 @@ public class avg_calculation {
     }
     //특정 학생의 특정 과목의 특정 회차의 등급을 학생,과목,회차 정보를 받아 출력시켜주는 메서드
     public void student_course_choose_round_rank(Student student,CourseList courseList,int round){
-        System.out.printf("%s 학생의 %s 과목 %d회차 등급 : %c\n",student.getName(),round+1,student_course_round_rank(student,courseList,round));
+        System.out.printf("%s 학생의 %s 과목 %d회차 등급 : %c\n",student.getName(),courseList.getCourseName(),round+1,student_course_round_rank(student,courseList,round));
     }
     //학생 리스트와 원하는 상태를 받아서 상태에 맞는 학생 리스트를 뽑아 return 해주는 메서드
     public List<Student> choose_student_state(List<Student> students,String state){
@@ -143,14 +143,35 @@ public class avg_calculation {
                 return 'N';
         }
     }
-    //번호를 입력받는 메서드
+    //번호를 입력받는 메서드 번호가 범위내가 아니라면 예외를 발생시킵니다.(default로 다시 continue 되겠지만 피드백에서
+    //실패했을 때 예외처리를 하는 것이 좋다는 이야기가 나왔기에 예외로 처리했습니다.)
     public int choose_num(){
         while (true) {
             try {
                 System.out.println("번호를 입력해 주세요.");
                 int choose = sc.nextInt();
                 sc.nextLine();
+                if(choose>6||choose<1){
+                    throw new InputMismatchException();
+                }
                 return choose;
+            } catch (InputMismatchException e) {
+                sc = new Scanner(System.in);
+                System.out.println("잘못된 값을 입력하셨습니다. 다시 입력해 주세요.");
+            }
+        }
+    }
+    //고유번호를 받는 메서드 고유번호가 없는 번호면 예외를 발생시킵니다.
+    public Student choose_idNumber(List<Student> students){
+        while (true) {
+            try {
+                System.out.println("학생의 고유번호를 입력해 주세요.");
+                int choose = sc.nextInt();
+                if(find_student(students,choose)==null){
+                    throw new InputMismatchException();
+                }
+                sc.nextLine();
+                return find_student(students,choose);
             } catch (InputMismatchException e) {
                 sc = new Scanner(System.in);
                 System.out.println("잘못된 값을 입력하셨습니다. 다시 입력해 주세요.");
@@ -182,6 +203,23 @@ public class avg_calculation {
                 }
                 return state;
             } catch (Exception e){
+                sc = new Scanner(System.in);
+                System.out.println("잘못된 값을 입력하셨습니다. 다시 입력해 주세요.");
+            }
+        }
+    }
+    //회차를 입력받는 메서드 회차번호가 올바르지 않다면 예외를 발생시킵니다.
+    public int choose_round(){
+        while (true) {
+            try {
+                System.out.println("회차를 입력해 주세요.");
+                int choose = sc.nextInt();
+                sc.nextLine();
+                if(choose>10||choose<1){
+                    throw new InputMismatchException();
+                }
+                return choose-1;
+            } catch (InputMismatchException e) {
                 sc = new Scanner(System.in);
                 System.out.println("잘못된 값을 입력하셨습니다. 다시 입력해 주세요.");
             }

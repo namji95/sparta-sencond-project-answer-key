@@ -28,4 +28,5 @@ public class Student {
     }
 
     public String getState(){return state;} //임시
+
 }
