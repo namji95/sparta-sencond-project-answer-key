@@ -1,27 +1,50 @@
 package score_avg;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import domain.*;
 
 public class avg_calculation {
     Scanner sc = new Scanner(System.in);
+    List<String> state_test = new ArrayList<String>(Arrays.asList("red","green","blue"));
     List<Student> 예시 = new ArrayList<Student>();
-    //학생들의 여러 점수를 조회하는 스크린을 연결시켜주는 메서드 (미완성)
+    //학생들의 여러 점수를 조회하는 스크린을 연결시켜주는 메서드
     public void avg_screen(List<Student> students){
         Notice();
-        switch (choose_num()){
-            case 1:
-                course_all_round_avg_screen(students,choose_course());
+        while (true) {
+            switch (choose_num()){
+                case 1:
+                    course_all_round_avg_screen(students,choose_course());
+                    break;
+                case 2:
+                    course_choose_round_avg_screen(students,choose_course(),choose_num());
+                    break;
+                case 3:
+                    student_course_all_round_rank(find_student(students,choose_num()),choose_course());
+                    break;
+                case 4:
+                    student_course_choose_round_rank(find_student(students,choose_num()),choose_course(),choose_num());
+                    break;
+                case 5:
+                    state_mandatory_course_all_round_avg(choose_student_state(students,choose_state()));
+                    break;
+                case 6:
+                    state_optiona_course_all_round_avg(choose_student_state(students,choose_state()));
+                    break;
+                default:
+                    continue;
+            }
+            break;
         }
     }
     //학생리스트,과목,회차를 받아와 과목의 고유번호를 대조해 학생들 중 매개변수로 받은 과목을 수강하는 학생이 있다면 점수를 추출하여
     // 평균을 구하는 메서드 return시 고유번호가 100보다 크면 선택 100이하면 필수 과목으로 계산합니다.
-    public char course_round_avg(List<Student> student,CourseList courseList,int round){
+    public char course_round_avg(List<Student> students,CourseList courseList,int round){
         int score_sum = 0;
         int student_count = 0;
-        for(Student s: student){
-            for(Course c : s.getMyCourse()){
+        for(Student student: students){
+            for(Course c : student.getMyCourse()){
                 if(courseList.getIdNumber()==c.getIdNumber()){
                     score_sum += c.getRoundScore(round);
                     student_count ++;
@@ -32,7 +55,6 @@ public class avg_calculation {
     }
     //학생리스트,과목을 받아와 특정 과목에 모든 회차의 평균을 출력하는 메서드
     public void course_all_round_avg_screen(List<Student> student,CourseList courseList){
-        System.out.println("과목을 입력해 주세요.");
         System.out.printf("%s 과목의 회차별 등급 평균 \n",courseList.getCourseName());
         for(int round =0; round<10; round++){
             System.out.printf("%d 회차: %c 등급 \n",round+1,course_round_avg(student,courseList,round));
@@ -45,27 +67,47 @@ public class avg_calculation {
     //학생,과목,회차 정보를 받아 학생안에 과목목록리스트에서 매개변수로 받아온 과목의 고유번호를 대조해 같다면 학생이 가지고 그 과목의 등급을 출력시켜주는 메서드
     //등급을 출력시킬 때 위에 메서드와 같이 묶어서 하나로 두고 점수를 받아 랭크를 얻는 것도 가능하지만 다양한 메서드를 만들어 보기 위해 서로 다른 방향에서
     //하나는 랭크 자체를 가져오고 하나는 점수를 가져와 바꾸는 메서드로 만드는 기능으로 나눴습니다.
-    public char student_course_rank_round(Student student,Course course,int round){
+    public char student_course_round_rank(Student student,CourseList courseList,int round){
         char rank = 'N';
         for(Course cor : student.getMyCourse()){
-            if(cor.getIdNumber()==course.getIdNumber()){
-                rank=course.getRoundRank(round);
+            if(cor.getIdNumber()==courseList.getIdNumber()){
+                rank=cor.getRoundRank(round);
             }
         }
         return rank;
     }
     //특정 학생의 특정 과목 화차별 등급을 학생,과목 정보를 받아 출력시켜주는 메서드
-    public void student_course_rank_all_round(Student student,Course course){
-        System.out.printf("%s 학생의 %s 과목 회차별 등급 \n",student.getName(),course.getCourseName());
-        for(int round =0;round<course.getGrades().size();round++){
-            System.out.printf("%d 회차: %c 등급\n",round+1,student_course_rank_round(student,course,round));
+    public void student_course_all_round_rank(Student student,CourseList courseList){
+        System.out.printf("%s 학생의 %s 과목 회차별 등급 \n",student.getName(),courseList.getCourseName());
+        for(int round =0;round<10;round++){
+            System.out.printf("%d 회차: %c 등급\n",round+1,student_course_round_rank(student,courseList,round));
         }
     }
     //특정 학생의 특정 과목의 특정 회차의 등급을 학생,과목,회차 정보를 받아 출력시켜주는 메서드
-    public void student_course_rank_choose_round(Student student,Course course,int round){
-        System.out.printf("%s 학생의 %s 과목 %d회차 등급 : %c\n",student.getName(),round+1,student_course_rank_round(student,course,round));
+    public void student_course_choose_round_rank(Student student,CourseList courseList,int round){
+        System.out.printf("%s 학생의 %s 과목 %d회차 등급 : %c\n",student.getName(),round+1,student_course_round_rank(student,courseList,round));
     }
-
+    //학생 리스트와 원하는 상태를 받아서 상태에 맞는 학생 리스트를 뽑아 return 해주는 메서드
+    public List<Student> choose_student_state(List<Student> students,String state){
+        System.out.printf("%s 상태의 ",state);
+        return students.stream().filter(s->s.getState().equals(state)).collect(Collectors.toList());
+    }
+    //상태로 나뉜 학생리스트를 받아 100이하의 고유번호 즉 필수 과목에 대한 특정 상태의 학생의 평균을 구하는 메서드
+    public void state_mandatory_course_all_round_avg(List<Student> students){
+        for(CourseList courseList:CourseList.values()){
+            if(courseList.getIdNumber()<100){
+                course_all_round_avg_screen(students,courseList);
+            }
+        }
+    }
+    //상태로 나뉜 학생리스트를 받아 100이상의 고유번호 즉 선택 과목에 대한 특정 상태의 학생의 평균을 구하는 메서드
+    public void state_optiona_course_all_round_avg(List<Student> students){
+        for(CourseList courseList:CourseList.values()){
+            if(courseList.getIdNumber()>100){
+                course_all_round_avg_screen(students,courseList);
+            }
+        }
+    }
     //임시 필수과목 등급지정
     public char mandatory_rank(int score){
         switch (score/5){
@@ -105,6 +147,7 @@ public class avg_calculation {
     public int choose_num(){
         while (true) {
             try {
+                System.out.println("번호를 입력해 주세요.");
                 int choose = sc.nextInt();
                 sc.nextLine();
                 return choose;
@@ -118,6 +161,7 @@ public class avg_calculation {
     public CourseList choose_course(){
         while (true) {
             try {
+                System.out.println("과목명을 입력해주세요.");
                 String choose = sc.nextLine();
                 return CourseList.getCourseList(choose);
             } catch (Exception e) {
@@ -127,6 +171,32 @@ public class avg_calculation {
         }
 
     }
+    //문자열을 입력받아 state리스트에 존재하는 상태라면 return 해주는 메서드
+    public String choose_state(){
+        while (true){
+            try{
+                System.out.println("원하시는 상태를 입력해주세요.");
+                String state = sc.nextLine();
+                if(!state_test.contains(state)){
+                    throw new InputMismatchException();
+                }
+                return state;
+            } catch (Exception e){
+                sc = new Scanner(System.in);
+                System.out.println("잘못된 값을 입력하셨습니다. 다시 입력해 주세요.");
+            }
+        }
+    }
+    //학생리스트에서 고유번호를 이용해 특정 학생을 찾아 return 해주는 메서드
+    public Student find_student (List<Student> students,int accointID){
+        Student find = null;
+        for(Student student: students){
+            if(student.getAccountId()==accointID){
+                find = student;
+            }
+        }
+        return find;
+    }
     //가독성을 위한 안내문 메서드
     public void Notice(){
         System.out.println("[ 점수 관리 시스템 ]");
@@ -134,5 +204,7 @@ public class avg_calculation {
         System.out.println("2. 특정 과목 특정 회차의 등급");
         System.out.println("3. 특정 학생의 특정 과목 회차별 등급");
         System.out.println("4. 특정 학생의 특정 과목 특정 회차의 등급");
+        System.out.println("5. 특정 상태의 필수 과목 회차별 등급");
+        System.out.println("6. 특정 상태의 선택 과목 회차별 등급");
     }
 }
