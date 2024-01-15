@@ -9,9 +9,9 @@ public class student_choose_rank {
     public void screen(Student student){
         try {
             System.out.println("예시 1.입력시 ");
-            student_course_all_round_rank(student, choose.choose_course(student));
+            student_course_all_round_rank(student, choose.choose_course(student,"조회하실 "+student.getName()+"학생의 과목을 입력해주세요."));
             System.out.println("예시 2 입력시");
-            student_course_choose_round_rank(student, choose.choose_course(student), choose.choose_round());
+            student_course_choose_round_rank(student, choose.choose_course(student,"조회하실 "+student.getName()+"학생의 과목을 입력해주세요."), choose.choose_round("조회하실 회차를 입력해주세요."));
         }catch (NullPointerException e){
             System.out.println("현재 학생의 랭크가 들어있지 않습니다.");
         }

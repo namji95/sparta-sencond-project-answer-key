@@ -13,18 +13,18 @@ public class avg_calculation {
         while (run) {
             Notice();
             try{
-            switch (choose.choose_num()) {
+            switch (choose.choose_num("원하시는 항목의 번호를 입력해주세요.")) {
                 case 1:
-                    course_all_round_avg_screen(students, choose.choose_course());
+                    course_all_round_avg_screen(students, choose.choose_course("조회하실 과목의 이름을 입력해주세요."));
                     break;
                 case 2:
-                    course_choose_round_avg_screen(students, choose.choose_course(), choose.choose_round());
+                    course_choose_round_avg_screen(students, choose.choose_course("조회하실 과목의 이름을 입력해주세요."), choose.choose_round("조회하실 회차를 입력해주세요."));
                     break;
                 case 3:
-                    state_mandatory_course_all_round_avg(choose_student_state(students, choose.choose_state()));
+                    state_mandatory_course_all_round_avg(choose_student_state(students, choose.choose_state("조회하실 그룹의 상태를 입력해주세요.")));
                     break;
                 case 4:
-                    state_optiona_course_all_round_avg(choose_student_state(students, choose.choose_state()));
+                    state_optiona_course_all_round_avg(choose_student_state(students, choose.choose_state("조회하실 그룹의 상태를 입력해주세요.")));
                     break;
                 case 5:
                     System.out.println("메인화면으로 돌아갑니다...");
