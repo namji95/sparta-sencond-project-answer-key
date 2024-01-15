@@ -2,46 +2,50 @@ package service;
 
 import console.Console;
 import domain.CourseType;
-import domain.StudentData;
 import domain.Student;
 import domain.Course;
+import domain.StudentData;
+import invalidate.Invalidate;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import static domain.StudentData.getInstance;
 
 // 정보 조회하는 클래스
 public class Information {
 
-    public static void lookUpInformation(List<Student> students) {
-        System.out.println("\n조회할 수강생 번호를 입력하세요");
-        long accountId = Console.inputInt();
-        System.out.println("\n수강생 목록을 조회합니다.....");
-        Student foundStudent = null;
+    public void lookUpInformation(StudentData students) {
+        Student student = insertStudentAccountId(students);      // 해당 수강생 정보가 존재한다.
 
-        for (Student student : students) {
-            if (student.getAccountId() == accountId) {
-                foundStudent = student;
-                break;
-            }
-        }
-        if (foundStudent != null) {
-            System.out.println("\n수강생 목록 조회 성공!");
-            System.out.println("학생 Id  : " + foundStudent.getAccountId());
-            System.out.println("학생 이름 : " + foundStudent.getName());
-            System.out.print("수강 과정 : " );
-            for (Course course : foundStudent.getMyCourse()) {
-                System.out.print(course.getCourseName() + " ");
-            }
-            //split() : ,별로 자르기 마지막 인덱스에 있는 1없애기
-            //string str = " "; 맨마지막 인덱스만 자르기...
-            //string.length
-            //substring
-            System.out.println();
-            System.out.println("학생 상태 : " + foundStudent.getStatus());
-        } else {
-            System.out.println("조회한 번호의 수강생이 없습니다.");
+        System.out.println("\n수강생 목록 조회 성공!");
+        System.out.println("학생 Id  : " + student.getAccountId());
+        System.out.println("학생 이름 : " + student.getName());
+        System.out.println("학생 상태 : " + student.getStatus());
+
+        printCourseList(student.getTypeCourseList(CourseType.MANDATORY), CourseType.MANDATORY);
+        printCourseList(student.getTypeCourseList(CourseType.OPTIONAL), CourseType.OPTIONAL);
+    }
+
+    private void printCourseList(List<Course> courses, CourseType type) {
+        if(type == CourseType.MANDATORY)
+            System.out.println("== 필수 과정 리스트 ==");
+        else if(type == CourseType.OPTIONAL)
+            System.out.println("== 선택 과정 리스트 ==");
+
+        String format = "%3d | %s\n";
+        for(Course course : courses)
+            System.out.printf(format, course.getIdNumber(), course.getCourseName());
+
+    }
+
+    private Student insertStudentAccountId(StudentData students) {
+        while(true) {
+            System.out.print("\n조회할 수강생 번호를 입력하세요: ");
+            String number = Console.inputString();
+            System.out.println("\n수강생 목록을 조회합니다.....");
+
+            if(!Invalidate.invalidateNumber(number) || Invalidate.invalidateStudent(number))
+                continue;
+
+            return students.getStudentInfo(Long.parseLong(number));
         }
     }
 }
