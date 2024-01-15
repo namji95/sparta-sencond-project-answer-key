@@ -24,6 +24,10 @@ public class StudentData {
 
     // 수정한 부분
 
+    public List<Student> getStudents() {
+        return students;
+    }
+
     public void inquireStudent(long seq) {
         System.out.println("\n수강생 목록을 조회합니다.....");
         //조회할 학생정보
@@ -73,6 +77,33 @@ public class StudentData {
         }
     }
 
+    public static void main(String[] args) {
+        Course course1 = new Course(1, "Java", CourseType.MANDATORY);
+        Course course2 = new Course(2, "Spring",CourseType.MANDATORY);
+        Course course3 = new Course(3, "JPA",CourseType.MANDATORY);
+
+
+        // 과목을 리스트에 추가
+        List<Course> studentCourses = new ArrayList<>();
+        studentCourses.add(course1);
+        studentCourses.add(course2);
+        studentCourses.add(course3);
+
+        // 학생 인스턴스 생성 및 초기화
+        Student student1 = new Student(123, "John Doe", studentCourses);
+
+        StudentData studentData = new StudentData();
+
+        studentData.students.add(student1);
+
+        studentData.inquireStudent(123);
+
+        System.out.println(studentData.students.toString()); //student는 리스트 형식
+
+        studentData.deleteStudent(123);
+
+        System.out.println(studentData .students.toString());
+    }
 }
 
 
