@@ -69,23 +69,37 @@ public class avg_calculation {
     }
     //학생 리스트와 원하는 상태를 받아서 상태에 맞는 학생 리스트를 뽑아 return 해주는 메서드
     public List<Student> choose_student_state(List<Student> students,String state){
-        System.out.printf("%s 상태의 ",state);
+        System.out.printf("[ %s 상태 그룹 ] \n",state);
         return students.stream().filter(s->s.getState().equals(state)).collect(Collectors.toList());
     }
     //상태로 나뉜 학생리스트를 받아 100이하의 고유번호 즉 필수 과목에 대한 특정 상태의 학생의 평균을 구하는 메서드
     public void state_mandatory_course_all_round_avg(List<Student> students){
-        for(CourseList courseList:CourseList.values()){
-            if(courseList.getIdNumber()<100){
-                course_all_round_avg_screen(students,courseList);
+        try{
+            if(students.isEmpty()){
+                throw new out_of_range();
             }
+            for(CourseList courseList:CourseList.values()){
+                if(courseList.getIdNumber()<100){
+                    course_all_round_avg_screen(students,courseList);
+                }
+            }
+        }catch (out_of_range e){
+            System.out.println("현재 해당 그룹에 학생이 없습니다.");
         }
     }
     //상태로 나뉜 학생리스트를 받아 100이상의 고유번호 즉 선택 과목에 대한 특정 상태의 학생의 평균을 구하는 메서드
     public void state_optiona_course_all_round_avg(List<Student> students){
-        for(CourseList courseList:CourseList.values()){
-            if(courseList.getIdNumber()>=100){
-                course_all_round_avg_screen(students,courseList);
+        try{
+            if(students.isEmpty()){
+                throw new out_of_range();
             }
+            for(CourseList courseList:CourseList.values()){
+                if(courseList.getIdNumber()>=100){
+                    course_all_round_avg_screen(students,courseList);
+                }
+            }
+        }catch (out_of_range e){
+            System.out.println("현재 해당 그룹에 학생이 없습니다.");
         }
     }
     //임시 필수과목 등급지정
