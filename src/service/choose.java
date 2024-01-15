@@ -8,6 +8,19 @@ import java.util.*;
 
 public class choose {
     //모든 메서드의 파라미터로 받는 input_msg는 입력받을 때 사용자에게 띄워줄 대화문을 뜻합니다 ex)"번호를 입력해 주세요."
+    //점수를 입력받아 0~100값인지 예외처리하는 메서드
+    public static int input_score(String input_msg){
+        while (true){
+            try {
+                int choose = choose_num(input_msg);
+                if(choose>100||choose<0){
+                    throw new out_of_range();
+                }
+            }catch (out_of_range e){
+                System.out.println("올바르지 않은 점수입니다.");
+            }
+        }
+    }
     //번호를 입력받는 메서드
     public static int choose_num(String input_msg){
         while (true) {
@@ -24,14 +37,11 @@ public class choose {
     public static Student choose_idNumber(List<Student> students,String input_msg){
         while (true) {
             try {
-                System.out.println(input_msg);
-                int choose = Console.inputInt();
+                int choose = choose_num(input_msg);
                 if(find_student(students,choose)==null){
                     throw new out_of_range();
                 }
                 return find_student(students,choose);
-            } catch (InputMismatchException e) {
-                System.out.println("잘못된 값을 입력하셨습니다. 다시 입력해 주세요.");
             } catch (out_of_range e){
                 System.out.println("잘못된 고유번호 입니다. 다시 입력해 주세요.");
             }
@@ -114,3 +124,4 @@ public class choose {
         return find;
     }
 }
+
