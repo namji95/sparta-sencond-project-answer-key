@@ -32,6 +32,20 @@ public class Main {
         li.add(g9);
         li.add(g10);
 
+        List<String> a = new ArrayList<>();
+        a.add("1");
+        a.add("6");
+        a.add("2");
+        a.add("3");
+        a.add("4");
+        a.add("5");
+        String ans = "";
+        for(int i=0;i<a.size();i++){
+            ans = ans+a.get(i)+",";
+        }
+        System.out.println(ans);
+        ans = ans.substring(0,ans.length()-1);
+        System.out.println(ans);
         Course c1 = new Course(1, "Java", MANDATORY);
         Course c4 = new Course(1, "Java", MANDATORY);
         c4.setGrades(li2);
@@ -52,5 +66,6 @@ public class Main {
         avg_calculation avv = new avg_calculation();
         student_choose_rank av = new student_choose_rank();
         avv.avg_screen(ss);
+        StudentData.getInstance();
     }
 }
