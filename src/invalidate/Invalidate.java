@@ -56,6 +56,28 @@ public class Invalidate {
         return true;
     }
 
+    public static boolean invalidateStudent(String number) {
+        long accountId = Long.parseLong(number);
+
+        try {
+            checkStudent(accountId);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return true;
+        }
+
+        return false;
+    }
+
+    public static void checkStudent(long number) {
+        for(Student student : StudentData.getInstance().getStudents()) {
+            if(student.getAccountId() == number)
+                return;
+        }
+
+        throw new IllegalArgumentException("[ERROR] 해당 학생이 존재하지 않습니다!");
+    }
+
     // 중복이 발생하면 true, 중복이 발생하지 않으면 false
     private static void invalidateDuplicateNumber(String[] numberList) {
         Set<String> numbers = new HashSet<>(List.of(numberList));
