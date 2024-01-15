@@ -25,7 +25,7 @@ public class choose {
     public static int choose_num(String input_msg){
         while (true) {
             try {
-                System.out.println("번호를 입력해 주세요.");
+                System.out.println(input_msg);
                 int choose = Console.inputInt();
                 return choose;
             } catch (InputMismatchException e) {
@@ -34,17 +34,14 @@ public class choose {
         }
     }
     //고유번호를 받는 메서드 고유번호가 없는 번호면 예외를 발생시킵니다.
-    public static Student choose_idNumber(List<Student> students){
+    public static Student choose_idNumber(List<Student> students,String input_msg){
         while (true) {
             try {
-                System.out.println("학생의 고유번호를 입력해 주세요.");
-                int choose = Console.inputInt();
+                int choose = choose_num(input_msg);
                 if(find_student(students,choose)==null){
                     throw new out_of_range();
                 }
                 return find_student(students,choose);
-            } catch (InputMismatchException e) {
-                System.out.println("잘못된 값을 입력하셨습니다. 다시 입력해 주세요.");
             } catch (out_of_range e){
                 System.out.println("잘못된 고유번호 입니다. 다시 입력해 주세요.");
             }
@@ -84,26 +81,23 @@ public class choose {
     public static String choose_state(String input_msg) {
         while (true) {
             try {
-                System.out.println("잘못된 값을 입력하셨습니다. 다시 입력해 주세요.");
+                System.out.println(input_msg);
                 String state = Console.inputString();
-                //상태 리스트에 상태가 있으면의 이야기 현재는  없으므로 패쓰
-                /* if(!state_test.contains(state)){
-                    throw new out_of_range();
-                }*/
+                // domain.StudentStatus.getStudentStatus(state);       // 상태 조회
                 return state;
             } catch (InputMismatchException e) {
+                System.out.println("잘못된 값을 입력하셨습니다.");
+           } catch (IllegalArgumentException e){
                 System.out.println("없는 상태 정보 입니다.");
-           /* } catch (out_of_range e){
-                System.out.println("없는 상태 정보 입니다.");
-            }*/
+            }
             }
         }
-    }
+
     //회차를 입력받는 메서드 회차번호가 올바르지 않다면 예외를 발생시킵니다.
     public static int choose_round(String input_msg){
         while (true) {
             try {
-                System.out.println("회차를 입력해 주세요.");
+                System.out.println(input_msg);
                 int choose = Console.inputInt();
                 if(choose>10||choose<1){
                     throw new out_of_range();

@@ -14,4 +14,15 @@ public enum StudentStatus {
     public String getStatus() {
         return status;
     }
+
+    public String getStudentStatus(String name) {
+        long count = 1;
+        for (StudentStatus studentStatus : StudentStatus.values()) {
+            if (studentStatus.getStatus().equals(name))
+                return status;
+
+            count++;
+        }
+        throw new IllegalArgumentException();
+    }
 }
