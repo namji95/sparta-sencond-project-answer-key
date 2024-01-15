@@ -2,10 +2,10 @@ package score_avg;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import console.*;
 import domain.*;
 
 public class avg_calculation {
+    //임시 상태확인
     List<String> state_test = new ArrayList<String>(Arrays.asList("red","green","blue"));
     //학생들의 여러 점수를 조회하는 스크린을 연결시켜주는 메서드
     public void avg_screen(List<Student> students){
@@ -33,7 +33,9 @@ public class avg_calculation {
                 default:
                     throw new out_of_range();
             }
-            }catch (Exception e){
+            }catch (out_of_range e){
+                System.out.println("선택번호의 없는 값 입니다.");
+            }catch (IndexOutOfBoundsException e){
                 System.out.println("아직 점수를 입력받지 않은 학생이 있습니다.");
             }
         }
