@@ -13,6 +13,7 @@ public class Course {
         this.idNumber = idNumber;
         this.courseName = courseName;
         this.type = type;
+
     }
 
     // 시험 횟수가 10회이면 true, 아니라면 false 반환
@@ -36,5 +37,10 @@ public class Course {
     public List<Grade> getGrades() {
         return grades;
     }
+
     public int getRoundScore(int round){ return grades.get(round).getScore();}
+
+    public char getRoundRank(int round){return grades.get(round).getRank();}
+
+    public void setGrades(List<Grade> a){this.grades =a; } //임시추가 없앨것
 }

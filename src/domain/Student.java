@@ -27,6 +27,18 @@ public class Student {
         return myCourse;
     }
 
+
+    //입력한 과목에 과목목록에 있으면 true 아니면 false
+    public boolean course_check(long Idnumber){
+        for(Course course1: myCourse){
+            if(course1.getIdNumber()==Idnumber){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     public String getStatus() {
         return status;
     }
