@@ -21,7 +21,7 @@ public class Management {
     public void run() {
         while(true) {
             System.out.println("메인 화면입니다."); // 여기는 나중에 수정할 예정
-            System.out.println("1. 등록하기    2. 수정하기    3. 조회하기    4. 삭제하기    5. 점수조회    0. 나가기");
+            System.out.println("1. 등록하기    2. 수정하기    3. 조회하기    4. 삭제하기    5. 등급조회    0. 나가기");
             int number = Integer.parseInt(Input.inputNumber());
 
             switchCase(number);
@@ -59,7 +59,7 @@ public class Management {
                     delete.deleteStudent();
                     break;
                 case 5:
-                    avg_calculation.avg_screen(StudentData.getInstance().getStudents());
+                    avg_calculation.avg_screen(StudentData.getInstance().getStudents()); //예외처리
                     break;
                 default:
                     throw new service.out_of_range();

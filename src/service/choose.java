@@ -83,19 +83,16 @@ public class choose {
             try {
                 System.out.println(input_msg);
                 String state = Console.inputString();
-                //상태 리스트에 상태가 있으면의 이야기 현재는  없으므로 패쓰
-                /* if(!state_test.contains(state)){
-                    throw new out_of_range();
-                }*/
+                domain.StudentStatus.getStudentStatus(state);
                 return state;
             } catch (InputMismatchException e) {
                 System.out.println("잘못된 값을 입력하셨습니다.");
-           /* } catch (out_of_range e){
+           } catch (IllegalArgumentException e){
                 System.out.println("없는 상태 정보 입니다.");
-            }*/
+            }
             }
         }
-    }
+
     //회차를 입력받는 메서드 회차번호가 올바르지 않다면 예외를 발생시킵니다.
     public static int choose_round(String input_msg){
         while (true) {
