@@ -40,11 +40,11 @@ public class Main {
         a.add("4");
         a.add("5");
         String ans = "";
-        for(int i=0;i<a.size();i++){
-            ans = ans+a.get(i)+",";
+        for (int i = 0; i < a.size(); i++) {
+            ans = ans + a.get(i) + ",";
         }
         System.out.println(ans);
-        ans = ans.substring(0,ans.length()-1);
+        ans = ans.substring(0, ans.length() - 1);
         System.out.println(ans);
         Course c1 = new Course(1, "Java", MANDATORY);
         Course c4 = new Course(1, "Java", MANDATORY);
@@ -59,8 +59,8 @@ public class Main {
         l.add(c3);
         List<Course> l2 = new ArrayList<Course>();
         l2.add(c4);
-        Student s1 = new Student(1,"실험체1",l);
-        Student s2 = new Student(2,"실험체2",l2);
+        Student s1 = new Student(1, "실험체1", l);
+        Student s2 = new Student(2, "실험체2", l2);
         List<Student> ss = new ArrayList<Student>();
         ss.add(s1);
         avg_calculation avv = new avg_calculation();

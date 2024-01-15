@@ -6,12 +6,13 @@ public class Student {
     private final long accountId;
     private final String name;
     private final List<Course> myCourse;
-    private String state; //임시
+    private String status;
 
     public Student(long accountId, String name, List<Course> myCourse) {
         this.accountId = accountId;
         this.name = name;
         this.myCourse = myCourse;
+        status = "Green";
     }
 
     public long getAccountId() {
@@ -26,7 +27,6 @@ public class Student {
         return myCourse;
     }
 
-    public String getState(){return state;} //임시
 
     //입력한 과목에 과목목록에 있으면 true 아니면 false
     public boolean course_check(long Idnumber){
@@ -38,4 +38,12 @@ public class Student {
         return false;
     }
 
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
