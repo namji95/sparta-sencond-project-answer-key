@@ -35,7 +35,7 @@ public class Main {
         Course c1 = new Course(1, "Java", MANDATORY);
         Course c4 = new Course(1, "Java", MANDATORY);
         c4.setGrades(li2);
-        c1.setGrades(li);;
+        c1.setGrades(li);
         Course c2 = new Course(2, "Spring", MANDATORY);
         c2.setGrades(li);
         Course c3 = new Course(3, "JPA", MANDATORY);
@@ -49,7 +49,6 @@ public class Main {
         Student s2 = new Student(2,"실험체2",l2);
         List<Student> ss = new ArrayList<Student>();
         ss.add(s1);
-        ss.add(s2);
         avg_calculation avv = new avg_calculation();
         student_choose_rank av = new student_choose_rank();
         avv.avg_screen(ss);
