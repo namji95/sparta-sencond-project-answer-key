@@ -19,4 +19,12 @@ public class StudentData {
         return studentData;
     }
 
+    public void addStudent(Student student) {
+        students.add(student);
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
 }
