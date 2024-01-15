@@ -9,7 +9,7 @@ public enum CourseList {
     MYSQL(4,"MySQL",CourseType.MANDATORY),
 
 
-    DESIGNPATTERN(100,"디자인패턴",CourseType.OPTIONAL),
+    DESIGNPATTERN(100,"Design Pattern",CourseType.OPTIONAL),
     SPRINGSECURITY(101,"Spring Security",CourseType.OPTIONAL),
     REDIS(102,"Redis",CourseType.OPTIONAL),
     MONGODB(103,"MongoDB",CourseType.OPTIONAL);
@@ -47,5 +47,26 @@ public enum CourseList {
     // 과목의 고유 번호를 넘겨줍니다.
     public long getIdNumber() {
         return idNumber;
+    }
+
+    // 과목에 대한 인스턴스를 반환합니다.
+    public Course getCourse() {
+        return new Course(idNumber, courseName, type);
+    }
+
+    public static CourseType getCourseType(long number) {
+        for(CourseList courseList : CourseList.values()) {
+            if(courseList.getIdNumber() == number)
+                return courseList.getType();
+        }
+
+        throw new IllegalArgumentException("[ERROR] 해당 정보가 없습니다.");
+    }
+
+    public String changeCourseType() {
+        if(type == CourseType.MANDATORY)
+            return "필수 과목";
+
+        return "선택 과목";
     }
 }
