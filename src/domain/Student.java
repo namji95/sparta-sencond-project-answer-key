@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Student {
@@ -35,4 +36,9 @@ public class Student {
         this.status = status;
     }
 
+    public List<Course> getTypeCourseList(CourseType type) {
+        return new ArrayList<>(myCourse.stream().
+                filter(course -> course.getType() == type)
+                .toList());
+    }
 }
