@@ -13,7 +13,7 @@ public class Student {
         this.accountId = accountId;
         this.name = name;
         this.myCourse = myCourse;
-        status = "Green";
+        status = StudentStatus.GREEN.getStatus();
     }
 
     public long getAccountId() {
