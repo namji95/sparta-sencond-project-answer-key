@@ -36,5 +36,12 @@ public class StudentData {
         // 그 전에 미리 예외처리를 해서 여기까지는 안 올거임
         throw new IllegalArgumentException("[ERROR] 해당 학생 정보가 없습니다.");
     }
+    
+    // 학생들의 상태별로 목록을 반환
+    public List<Student> getStudentStatusList(String status) {
+        return students.stream().
+                filter(student -> student.getStatus().equals(status))
+                .toList();
+    }
 
 }

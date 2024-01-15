@@ -7,4 +7,14 @@ public class Input {
         System.out.print("숫자를 입력하세요: ");
         return Console.inputString();
     }
+
+    public static String inputStudentNumber() {
+        System.out.print("학생의 번호를 입력하세요: ");
+        return Console.inputString();
+    }
+
+    public static String inputCourseNumber() {
+        System.out.print("과목의 번호를 입력하세요: ");
+        return Console.inputString();
+    }
 }

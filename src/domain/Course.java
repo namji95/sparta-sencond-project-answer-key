@@ -13,6 +13,7 @@ public class Course {
         this.idNumber = idNumber;
         this.courseName = courseName;
         this.type = type;
+
     }
 
     // 시험 횟수가 10회이면 true, 아니라면 false 반환
@@ -36,5 +37,38 @@ public class Course {
     public List<Grade> getGrades() {
         return grades;
     }
-    public int getRoundScore(int round){ return grades.get(round).getScore();}
+
+    public int getRoundScore(int round){
+        return grades.get(round).getScore();
+    }
+
+    public char getRoundRank(int round){
+        return grades.get(round).getRank();
+    }
+
+    public void setGrades(List<Grade> a){
+        this.grades =a;
+    } //임시추가 없앨것
+
+    public void insertScore(int score) {
+        grades.add(new Grade(score,this.type));
+    }
+
+    // 시험 본 평균 점수를 반환
+    public double avgScore() {
+        if(grades.isEmpty())
+            return 0;
+
+        return (double)totalScore() / grades.size();
+    }
+
+    // 시험 본 전체 점수를 반환
+    public int totalScore() {
+        int total = 0;
+
+        for(Grade grade : grades)
+            total += grade.getScore();
+
+        return total;
+    }
 }

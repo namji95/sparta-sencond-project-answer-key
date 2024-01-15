@@ -9,7 +9,7 @@ public enum CourseList {
     MYSQL(4,"MySQL",CourseType.MANDATORY),
 
 
-    DESIGNPATTERN(100,"디자인패턴",CourseType.OPTIONAL),
+    DESIGNPATTERN(100,"Design Pattern",CourseType.OPTIONAL),
     SPRINGSECURITY(101,"Spring Security",CourseType.OPTIONAL),
     REDIS(102,"Redis",CourseType.OPTIONAL),
     MONGODB(103,"MongoDB",CourseType.OPTIONAL);
@@ -18,7 +18,10 @@ public enum CourseList {
     private final String courseName;
     private final CourseType type;
 
-    CourseList(long idNumber, String courseName, CourseType type) {
+
+
+    CourseList(long idNumber,String courseName, CourseType type) {
+
         this.idNumber = idNumber;
         this.courseName = courseName;
         this.type = type;
@@ -30,7 +33,6 @@ public enum CourseList {
         for(CourseList courseList : CourseList.values()) {
             if(courseList.getCourseName().equals(name))
                 return new Course(courseList.getIdNumber(),courseList.getCourseName(),courseList.getType());
-
         }
         throw new IllegalArgumentException();
     }
@@ -44,6 +46,18 @@ public enum CourseList {
         return type;
     }
 
+
+
+    public static CourseList getCourseList_search(String name) {
+        long count = 1;
+        for (CourseList courseList : CourseList.values()) {
+            if (courseList.getCourseName().equals(name))
+                return courseList;
+
+            count++;
+        }
+        throw new IllegalArgumentException();
+    }
     // 과목의 고유 번호를 넘겨줍니다.
     public long getIdNumber() {
         return idNumber;

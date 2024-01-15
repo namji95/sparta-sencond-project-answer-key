@@ -1,17 +1,14 @@
 import domain.StudentData;
-import service.Delete;
-import service.Information;
-import service.Modify;
-import service.Register;
+import service.*;
 import view.Input;
 
 public class Management {
-
+    private StudentData studentData = StudentData.getInstance();
     private Register register;
     private Modify modify;
     private Information information;
     private Delete delete;
-    private StudentData studentData = StudentData.getInstance();
+    private Avg_calculation avg_calculation;
 
     public Management() {
         register = new Register();
@@ -24,7 +21,7 @@ public class Management {
     public void run() {
         while(true) {
             System.out.println("메인 화면입니다."); // 여기는 나중에 수정할 예정
-            System.out.println("1. 등록하기    2. 수정하기    3. 조회하기    4. 삭제하기    0. 나가기");
+            System.out.println("1. 등록하기    2. 수정하기    3. 조회하기    4. 삭제하기    5. 점수조회    0. 나가기");
             int number = Integer.parseInt(Input.inputNumber());
 
             switchCase(number);
@@ -59,6 +56,10 @@ public class Management {
             case 4:
                 System.out.println("수강생을 삭제하시겠습니까?");
                 delete.deleteStudent(studentData);
+                break;
+
+            case 5:
+                avg_calculation.avg_screen(StudentData.getInstance().getStudents());
                 break;
 
             default:
