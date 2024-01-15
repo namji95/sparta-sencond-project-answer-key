@@ -48,4 +48,9 @@ public enum CourseList {
     public long getIdNumber() {
         return idNumber;
     }
+
+    // 과목에 대한 인스턴스를 반환합니다.
+    public Course getCourse() {
+        return new Course(idNumber, courseName, type);
+    }
 }

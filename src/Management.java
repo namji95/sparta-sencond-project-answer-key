@@ -1,4 +1,5 @@
 import console.Console;
+import domain.StudentData;
 import service.Delete;
 import service.Information;
 import service.Modify;
@@ -16,6 +17,7 @@ public class Management {
         register = new Register();
         modify = new Modify();
         information = new Information();
+
         delete = new Delete();
     }
 
@@ -52,12 +54,12 @@ public class Management {
 
             case 3:
                 System.out.println("수강생을 조회하시겠습니까?");
-                information.lookUpInformation(); // 수강생 조회하기
+                information.lookUpInformation(StudentData.getStudents()); // 수강생 조회하기
                 break;
 
             case 4:
                 System.out.println("수강생을 삭제하시겠습니까?");
-                delete.deleteStudent();
+                delete.deleteStudent(StudentData.getStudents());
                 break;
 
             default:

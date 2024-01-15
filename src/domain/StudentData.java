@@ -3,10 +3,10 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentData {
+public class StudentData { //싱글톤 패턴
 
     private static StudentData studentData;
-    private final List<Student> students;
+    private static List<Student> students;
 
     private StudentData() {
         students = new ArrayList<>();
@@ -17,6 +17,14 @@ public class StudentData {
             studentData = new StudentData();
 
         return studentData;
+    }
+
+    public void addStudent(Student student) {
+        students.add(student);
+    }
+
+    public static List<Student> getStudents() {
+        return students;
     }
 
 }
