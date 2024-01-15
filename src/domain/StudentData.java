@@ -36,31 +36,41 @@ public class StudentData {
         for (Student student : students) {
             if (student.getAccountId() == seq) {
                 foundStudent = student;
+                break;                          // 조회한 학생 ID와 일치하게 된다면 객체를 넣어주고 break문으로 빠져나와야해요
+                                                // 안그러면 끝까지 for문을 돌아서 낭비에요
+            }
+        }
 
+        //foundStudent에 값이 있을 경우 학생데이터를 출력, 없을 경우 false
+        if (foundStudent != null) {
+            //점수에 따라 상태가 달라짐
+            //Student 클래스 안에 들어감, enum 클래스로 만들기
+            //String studentStatus = student.getStatus;
+            //String studentStatus = (String)student.status;
+            System.out.println("\n수강생 목록 조회 성공!");
+            System.out.println("학생 Id  : " + foundStudent.getAccountId());
+            System.out.println("학생 이름 : " + foundStudent.getName());
+            System.out.print("수강 과정 : " );
+            for (Course course : foundStudent.getMyCourse()) {
+                System.out.print(course.getCourseName() + " ");
             }
-            //foundStudent에 값이 있을 경우 학생데이터를 출력, 없을 경우 false
-            if (foundStudent != null) {
-                //점수에 따라 상태가 달라짐
-                //Student 클래스 안에 들어감, enum 클래스로 만들기
-                //String studentStatus = student.getStatus;
-                //String studentStatus = (String)student.status;
-                System.out.println("\n수강생 목록 조회 성공!");
-                System.out.println("학생 Id  : " + student.getAccountId());
-                System.out.println("학생 이름 : " + student.getName());
-                System.out.print("수강 과정 : " );
-                for (Course course : student.getMyCourse()) {
-                    System.out.print(course.getCourseName() + " ");
-                }
-                System.out.println();
-                System.out.println("학생 상태 : ");
-            } else {
-                System.out.println("조회한 번호의 수강생이 없습니다.");
-            }
+            System.out.println();
+            System.out.println("학생 상태 : ");
+        } else {
+            System.out.println("조회한 번호의 수강생이 없습니다.");
         }
     }
     public void  deleteStudent(long seq) {
         Student foundStudent = null;
 
+        // 밑에랑 똑같지만 향상된 for문으로 사용하는게 좋아요
+        for(Student student : students) {
+            if(student.getAccountId() == seq) {
+                foundStudent = student;
+                break;
+            }
+        }
+        /*
         for (int i = 0; i < students.size(); i++) {
             Student student = students.get(i);
             if (student.getAccountId() == seq) {
@@ -68,7 +78,8 @@ public class StudentData {
                 break;  // 학생을 찾으면 반복문 종료
             }
         }
-
+        */
+        
         if (foundStudent != null) {
             students.remove(foundStudent);
             System.out.println("학생 정보가 삭제되었습니다.");
