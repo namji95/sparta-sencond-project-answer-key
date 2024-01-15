@@ -27,7 +27,7 @@ public class Grade {
         this.score = score;
     }
 
-    public char mandatoryRank(int score) {
+    public static char mandatoryRank(int score) {
         char rank;
 
         if(score >=95 && score <=100)
@@ -45,7 +45,7 @@ public class Grade {
         }
         return rank;
     }
-    public char optionalRank(int score) {
+    public static char optionalRank(int score) {
         char rank;
 
         if(score >=90&& score <=100)

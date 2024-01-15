@@ -1,4 +1,4 @@
-package score_avg;
+package service;
 
 import domain.Course;
 import domain.CourseList;
