@@ -1,4 +1,5 @@
 import console.Console;
+import service.Delete;
 import service.Information;
 import service.Modify;
 import service.Register;
@@ -9,18 +10,20 @@ public class Management {
     private Register register;
     private Modify modify;
     private Information information;
+    private Delete delete;
 
     public Management() {
         register = new Register();
         modify = new Modify();
         information = new Information();
+        delete = new Delete();
     }
 
     // 실행할 때 해당 메서드를 중심으로 실행
     public void run() {
         while(true) {
             System.out.println("메인 화면입니다."); // 여기는 나중에 수정할 예정
-            System.out.println("1. 등록하기    2. 수정하기    3. 조회하기    0. 나가기");
+            System.out.println("1. 등록하기    2. 수정하기    3. 조회하기    4. 삭제하기    0. 나가기");
             int number = Integer.parseInt(Input.inputNumber());
 
             switchCase(number);
@@ -50,6 +53,11 @@ public class Management {
             case 3:
                 System.out.println("수강생을 조회하시겠습니까?");
                 information.lookUpInformation(); // 수강생 조회하기
+                break;
+
+            case 4:
+                System.out.println("수강생을 삭제하시겠습니까?");
+                delete.deleteStudent();
                 break;
 
             default:
