@@ -1,7 +1,8 @@
 package service;
 
 import console.Console;
-import domain.*;
+import domain.course.CourseList;
+import domain.student.Student;
 
 import java.util.*;
 
@@ -83,7 +84,7 @@ public class choose {
             try {
                 System.out.println(input_msg);
                 String state = Console.inputString();
-                // domain.StudentStatus.getStudentStatus(state);       // 상태 조회
+                // domain.student.StudentStatus.getStudentStatus(state);       // 상태 조회
                 return state;
             } catch (InputMismatchException e) {
                 System.out.println("잘못된 값을 입력하셨습니다.");
@@ -111,7 +112,7 @@ public class choose {
         }
     }
     //학생아이디를 받아 학생을 찾는 메서드
-    public static Student find_student (List<Student> students,int accointID){
+    public static Student find_student (List<Student> students, int accointID){
         Student find = null;
         for(Student student: students){
             if(student.getAccountId()==accointID){

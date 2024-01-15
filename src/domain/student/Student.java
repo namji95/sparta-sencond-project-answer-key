@@ -1,4 +1,7 @@
-package domain;
+package domain.student;
+
+import domain.course.Course;
+import domain.course.CourseType;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-import domain.StudentData;
+import domain.student.StudentData;
 import service.*;
 import view.Input;
 

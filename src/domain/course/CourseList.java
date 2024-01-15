@@ -1,4 +1,4 @@
-package domain;
+package domain.course;
 
 // 과목 목록에 대한 enum class입니다.
 // 여기서 과목을 설정할 수 있으며, 추가적으로 과목을 넣고 싶다면 이 enum class 에 추가를 하면 됩니다.

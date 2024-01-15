@@ -1,13 +1,15 @@
-package domain;
+package domain.course;
 
+import domain.Grade;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Course {
-
     private final long idNumber;
     private String courseName;
     private CourseType type;
-    private List<Grade> grades;             // 이 과목에 점수를 넣으면 회차가 증가되고 점수가 부여되면 자동으로 등급이 매겨지고..
+    private List<Grade> grades = new ArrayList<>();
 
     public Course(long idNumber, String courseName, CourseType type) {
         this.idNumber = idNumber;
@@ -38,6 +40,10 @@ public class Course {
         return grades;
     }
 
+    public int getTurn() {
+        return grades.size();
+    }
+
     public int getRoundScore(int round){
         return grades.get(round).getScore();
     }
@@ -45,10 +51,6 @@ public class Course {
     public char getRoundRank(int round){
         return grades.get(round).getRank();
     }
-
-    public void setGrades(List<Grade> a){
-        this.grades =a;
-    } //임시추가 없앨것
 
     public void insertScore(int score) {
         grades.add(new Grade(score,this.type));

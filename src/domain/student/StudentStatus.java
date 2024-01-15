@@ -1,4 +1,4 @@
-package domain;
+package domain.student;
 
 public enum StudentStatus {
     GREEN("매우 기분좋음"),

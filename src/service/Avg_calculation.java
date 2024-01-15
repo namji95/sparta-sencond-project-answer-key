@@ -2,7 +2,10 @@ package service;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import domain.*;
+
+import domain.course.Course;
+import domain.course.CourseList;
+import domain.student.Student;
 
 
 public class Avg_calculation {
@@ -52,7 +55,7 @@ public class Avg_calculation {
     }
     //학생리스트,과목,회차를 받아와 과목의 고유번호를 대조해 학생들 중 매개변수로 받은 과목을 수강하는 학생이 있다면 점수를 추출하여
     // 평균을 구하는 메서드 return시 고유번호가 100보다 크면 선택 100이하면 필수 과목으로 계산합니다.
-    public char course_round_avg(List<Student> students,CourseList courseList,int round){
+    public char course_round_avg(List<Student> students, CourseList courseList, int round){
         int score_sum = 0;
         int student_count = 0;
         for(Student student: students){

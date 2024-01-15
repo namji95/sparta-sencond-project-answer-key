@@ -1,6 +1,9 @@
-package domain;
+package domain.student;
 
 import console.Console;
+import domain.course.Course;
+import domain.course.CourseList;
+import domain.course.CourseType;
 import invalidate.Invalidate;
 
 import java.util.ArrayList;

@@ -1,9 +1,10 @@
 package invalidate;
 
-import domain.CourseList;
-import domain.CourseType;
-import domain.Student;
-import domain.StudentData;
+import domain.course.Course;
+import domain.course.CourseList;
+import domain.course.CourseType;
+import domain.student.Student;
+import domain.student.StudentData;
 
 import java.util.HashSet;
 import java.util.List;
@@ -22,14 +23,23 @@ public class Invalidate {
                 invalidateNumberRange(number);
                 return true;
             }
-
             throw new IllegalArgumentException("[ERROR] 숫자를 입력하시지 않으셨습니다.");
-
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return false;
         }
 
+    }
+
+    public static boolean invalidateNumberRange(int number, int min, int max) {
+        try {
+            if(number < min || number > max)
+                throw new IllegalArgumentException("[ERROR] 숫자 범위를 초과하셨습니다.");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     // 해당 고유번호가 있는지 확인 -> 있으면 true , 없으면 false로 반환
@@ -44,6 +54,23 @@ public class Invalidate {
         }
         return false;
     }
+
+    public static Course invalidateCourseNumber(String number, List<Course> courses) {
+        long idNumber = Long.parseLong(number);
+
+        for(Course course : courses) {
+            if(course.getIdNumber() == idNumber)
+                return course;
+        }
+
+        try {
+            throw new IllegalArgumentException("[ERROR] 수강하지 않은 과목입니다.");
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
 
     public static void invalidateNumberRange(String number) {
         int num = Integer.parseInt(number);
