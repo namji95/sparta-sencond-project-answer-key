@@ -9,7 +9,7 @@ public enum CourseList {
     MYSQL(4,"MySQL",CourseType.MANDATORY),
 
 
-    DESIGNPATTERN(100,"Design Pattern",CourseType.OPTIONAL),
+    DESIGNPATTERN(100,"디자인패턴",CourseType.OPTIONAL),
     SPRINGSECURITY(101,"Spring Security",CourseType.OPTIONAL),
     REDIS(102,"Redis",CourseType.OPTIONAL),
     MONGODB(103,"MongoDB",CourseType.OPTIONAL);
