@@ -1,4 +1,3 @@
-import console.Console;
 import domain.StudentData;
 import service.Delete;
 import service.Information;
@@ -54,12 +53,12 @@ public class Management {
 
             case 3:
                 System.out.println("수강생을 조회하시겠습니까?");
-                information.lookUpInformation(studentData.getStudents()); // 수강생 조회하기
+                information.lookUpInformation(studentData); // 수강생 조회하기
                 break;
 
             case 4:
                 System.out.println("수강생을 삭제하시겠습니까?");
-                delete.deleteStudent(studentData.getStudents());
+                delete.deleteStudent(studentData);
                 break;
 
             default:

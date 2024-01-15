@@ -80,7 +80,7 @@ public class Invalidate {
         return false;
     }
 
-    public static void checkStudent(long number) {
+    private static void checkStudent(long number) {
         for(Student student : StudentData.getInstance().getStudents()) {
             if(student.getAccountId() == number)
                 return;
