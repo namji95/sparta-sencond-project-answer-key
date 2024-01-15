@@ -17,15 +17,19 @@ public class Invalidate {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(number);
 
-        if(matcher.matches())
-            return true;
-
         try {
+            if(matcher.matches()) {
+                invalidateNumberRange(number);
+                return true;
+            }
+
             throw new IllegalArgumentException("[ERROR] 숫자를 입력하시지 않으셨습니다.");
+
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return false;
         }
+
     }
 
     // 해당 고유번호가 있는지 확인 -> 있으면 true , 없으면 false로 반환
@@ -39,6 +43,13 @@ public class Invalidate {
             return true;
         }
         return false;
+    }
+
+    public static void invalidateNumberRange(String number) {
+        int num = Integer.parseInt(number);
+
+        if(num <= 0)
+            throw new IllegalArgumentException("[ERROR] 해당 범위의 숫자는 할 수 없습니다.");
     }
 
     public static boolean invalidateCourse(String number) {

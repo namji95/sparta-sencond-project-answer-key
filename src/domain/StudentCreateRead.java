@@ -22,9 +22,76 @@ public class StudentCreateRead {
         System.out.println("학생이 성공적으로 생성되었습니다!\n");
     }
 
+    public void studentRead(StudentData studentData) {
+        while(true) {
+            printStudentList(studentData);
+            System.out.println("나가고 싶으시면 exit 을 입력하세요.");
+            System.out.print("조회할 수강생의 고유 번호를 입력하세요: ");
+            String accountId = Console.inputString();
+
+            if(accountId.equals("exit"))
+                break;
+
+            if(!Invalidate.invalidateNumber(accountId))
+                continue;
+
+            if(Invalidate.invalidateStudent(accountId))
+                continue;
+
+            printStudentInformation(studentData.getStudentInfo(Long.parseLong(accountId)));
+        }
+    }
+
+    private void printStudentInformation(Student student) {
+        while(true) {
+            studentInformation(student);
+            System.out.print("이전 화면으로 넘어가고 싶으시면 0번을 입력하세요: ");
+            String number = Console.inputString();
+
+            if(!Invalidate.invalidateNumber(number))
+                continue;
+
+            if(number.equals("0"))
+                break;
+        }
+    }
+
+    private void studentInformation(Student student) {
+        System.out.println("고유 번호: " + student.getAccountId());
+        System.out.println("학생 이름: " + student.getName());
+        System.out.println("학생 상태: " + student.getStatus());
+
+        printTypeCourseList(student.getTypeCourseList(CourseType.MANDATORY),CourseType.MANDATORY);
+        printTypeCourseList(student.getTypeCourseList(CourseType.OPTIONAL),CourseType.OPTIONAL);
+    }
+
+    private void printStudentList(StudentData studentData) {
+        System.out.println("== 등록된 수강생 정보들 ==");
+
+        for(Student student : studentData.getStudents()) {
+            System.out.print("수강생 고유번호: " + student.getAccountId());
+            System.out.println("수강생 이름: " + student.getName());
+            printTypeCourseList(student.getTypeCourseList(CourseType.MANDATORY),CourseType.MANDATORY);
+            printTypeCourseList(student.getTypeCourseList(CourseType.OPTIONAL),CourseType.OPTIONAL);
+        }
+    }
+
+    private void printTypeCourseList(List<Course> courses, CourseType type) {
+        if(type == CourseType.MANDATORY)
+            System.out.println("===== 필수 과목 =====");
+        else if(type == CourseType.OPTIONAL)
+            System.out.println("===== 선택 과묙 =====");
+
+        System.out.println("Number | CourseName");
+
+        for(Course course : courses)
+            System.out.printf("%-6d | %s\n",course.getIdNumber(), course.getCourseName());
+
+        System.out.println();
+    }
+
     private List<Course> selectCourse() {
         printCourseList();
-
         return saveCourseList();
     }
 
@@ -74,33 +141,10 @@ public class StudentCreateRead {
             System.out.print("등록할 수강생의 고유 번호를 입력하세요: ");
             String number = Console.inputString();
 
-            if(!Invalidate.invalidateNumber(number) && Invalidate.invalidateExistStudent(number))
+            if(!Invalidate.invalidateNumber(number) || Invalidate.invalidateExistStudent(number))
                 continue;
 
             return Long.parseLong(number);
-        }
-    }
-
-    public void studentRead() {
-        while (true) {
-            System.out.println("등록된 학생 목록 : ");
-            String studentSearch = Console.inputString();
-            if (studentSearch.equals("end")) {
-                break;
-            }
-
-            for (Student student : StudentData.getInstance().getStudents()) {
-                if (student.getName().equals(studentSearch)) {
-                    System.out.println("계정 ID: " + student.getAccountId());
-                    System.out.println("이름: " + student.getName());
-                    System.out.println("수강 과목:");
-
-                    for (Course course : student.getMyCourse()) {
-                        System.out.println("- " + course.getCourseName());
-                    }
-                }
-            }
-            System.out.println("----------------------------------");
         }
     }
 }
