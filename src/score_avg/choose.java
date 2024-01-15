@@ -26,11 +26,13 @@ public class choose {
                 System.out.println("학생의 고유번호를 입력해 주세요.");
                 int choose = Console.inputInt();
                 if(find_student(students,choose)==null){
-                    throw new InputMismatchException();
+                    throw new out_of_range();
                 }
                 return find_student(students,choose);
             } catch (InputMismatchException e) {
                 System.out.println("잘못된 값을 입력하셨습니다. 다시 입력해 주세요.");
+            } catch (out_of_range e){
+                System.out.println("잘못된 고유번호 입니다. 다시 입력해 주세요.");
             }
         }
     }
@@ -47,6 +49,7 @@ public class choose {
         }
 
     }
+    //수업을 선택할때 사용하는 메서드의 오버로딩 형태 특정학생을 기준으로 포함여부를 확인하는 메서드
     public static CourseList choose_course(Student student){
         while(true){
             try {
@@ -99,6 +102,7 @@ public class choose {
             }
         }
     }
+    //학생아이디를 받아 학생을 찾는 메서드
     public static Student find_student (List<Student> students,int accointID){
         Student find = null;
         for(Student student: students){
