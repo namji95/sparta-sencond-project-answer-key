@@ -5,12 +5,14 @@ import java.util.List;
 public class Student {
     private final long accountId;
     private final String name;
-    private final List<Course> myCourse; // 다른 메모리 주소로 변경을 할 수 없을 뿐, 데이터를 확장, 축소 가능
+    private final List<Course> myCourse;
+    private String status;
 
     public Student(long accountId, String name, List<Course> myCourse) {
         this.accountId = accountId;
         this.name = name;
         this.myCourse = myCourse;
+        status = "Green";
     }
 
     public long getAccountId() {
@@ -23,5 +25,13 @@ public class Student {
 
     public List<Course> getMyCourse() {
         return myCourse;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
