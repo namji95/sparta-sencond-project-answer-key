@@ -251,6 +251,3 @@ Average Score : 74.9 | D Rank
 - 언어에 익숙하지 않으면 코딩으로 구현이 어렵다는 것을 느낌
 
 **남지훈**
-#   s p a r t a - s e n c o n d - p r o j e c t - a n s w e r - k e y 
- 
- 
