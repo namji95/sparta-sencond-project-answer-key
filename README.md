@@ -3,13 +3,13 @@
 ---
 ## 👥 Team 
 
-이름| 역할 | 블로그주소                              |Github주소
----|----|------------------------------------|---
-**김형우**| 팀장 | https://khwtil.tistory.com/        | https://github.com/RebbitK
-**이병수**| 팀원 | https://velog.io/@gloz0315/posts   | https://github.com/gloz0315
-**진유림**| 팀원 | https://velog.io/@wealel0529/posts | https://github.com/wealEl
-**최지원**| 팀원 | https://velog.io/@jiwon317         | https://github.com/jiwon317
-**남지훈**| 팀원 | 1                                  |1
+| 이름      | 역할 | 블로그주소                              | Github주소                    |
+|---------|----|------------------------------------|-----------------------------|
+| **김형우** | 팀장 | https://khwtil.tistory.com/        | https://github.com/RebbitK  |
+| **이병수** | 팀원 | https://velog.io/@gloz0315/posts   | https://github.com/gloz0315 |
+| **진유림** | 팀원 | https://velog.io/@wealel0529/posts | https://github.com/wealEl   |
+| **최지원** | 팀원 | https://velog.io/@jiwon317         | https://github.com/jiwon317 |
+| **남지훈** | 팀원 | https://namji9507.tistory.com/     | https://github.com/namji95  |
 
 ## 👋프로그램 소개
 **캠프 관리 프로그램 - 관리자가 되어 수강생들을 관리하자!**
@@ -251,5 +251,6 @@ Average Score : 74.9 | D Rank
 - 언어에 익숙하지 않으면 코딩으로 구현이 어렵다는 것을 느낌
 
 **남지훈**
-#   s p a r t a - s e n c o n d - p r o j e c t - a n s w e r - k e y  
+#   s p a r t a - s e n c o n d - p r o j e c t - a n s w e r - k e y 
+ 
  
