@@ -5,6 +5,7 @@ import domain.course.CourseList;
 import domain.course.CourseType;
 import domain.student.Student;
 import domain.student.StudentData;
+import view.Input;
 
 import java.util.HashSet;
 import java.util.List;
@@ -28,7 +29,38 @@ public class Invalidate {
             System.out.println(e.getMessage());
             return false;
         }
+    }
 
+    public static boolean invalidateCourses(List<Course> courses, Long number) {
+        for(Course course : courses) {
+            if(course.getIdNumber() == number)
+                return true;
+        }
+
+        try {
+            throw new IllegalArgumentException("[ERROR] 해당 과목이 없습니다");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            System.out.println();
+            return false;
+        }
+    }
+
+    public static boolean invalidateCourses(String numberId) {
+        long number = Long.parseLong(numberId);
+
+        for(CourseList courseList : CourseList.values()) {
+            if(courseList.getIdNumber() == number)
+                return true;
+        }
+
+        try {
+            throw new IllegalArgumentException("[ERROR] 해당 과목은 존재하지 않습니다!");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            System.out.println();
+        }
+        return false;
     }
 
     public static boolean invalidateNumberRange(int number, int min, int max) {
@@ -105,6 +137,13 @@ public class Invalidate {
         }
 
         return false;
+    }
+
+    public static int invalidateChooseNumber() {
+        while(true) {
+            String number = Input.inputNumber();
+
+        }
     }
 
     private static void checkStudent(long number) {

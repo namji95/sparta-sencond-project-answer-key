@@ -1,5 +1,8 @@
 package domain.course;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // 과목 목록에 대한 enum class입니다.
 // 여기서 과목을 설정할 수 있으며, 추가적으로 과목을 넣고 싶다면 이 enum class 에 추가를 하면 됩니다.
 public enum CourseList {
@@ -17,14 +20,20 @@ public enum CourseList {
     private final long idNumber;
     private final String courseName;
     private final CourseType type;
-
-
-
+    
     CourseList(long idNumber,String courseName, CourseType type) {
-
         this.idNumber = idNumber;
         this.courseName = courseName;
         this.type = type;
+    }
+
+    public static String getChangeName(long idNumber) {
+        for(CourseList courseList : CourseList.values()) {
+            if(courseList.getIdNumber() == idNumber)
+                return courseList.getCourseName();
+        }
+
+        throw new IllegalArgumentException("[ERROR] 해당 과목이 없습니다");
     }
 
     // 과목에 대한 정보를 찾고, 반환 타입으로 과목에 대한 인스턴스를 생성해서 반환
@@ -45,8 +54,6 @@ public enum CourseList {
     public CourseType getType() {
         return type;
     }
-
-
 
     public static CourseList getCourseList_search(String name) {
         long count = 1;

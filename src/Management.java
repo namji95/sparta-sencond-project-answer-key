@@ -3,25 +3,25 @@ import service.*;
 import view.Input;
 
 public class Management {
-
-    private Register register;
-    private Modify modify;
-    private Information information;
-    private Delete delete;
+    private final Register register;
+    private final Modify modify;
+    private final Information information;
+    private final Delete delete;
+    private final AverageRank averageRank;
     private StudentData studentData = StudentData.getInstance();
-    private Avg_calculation avg_calculation;
 
     public Management() {
         register = new Register();
         modify = new Modify();
         information = new Information();
         delete = new Delete();
+        averageRank = new AverageRank();
     }
 
     // 실행할 때 해당 메서드를 중심으로 실행
     public void run() {
         while(true) {
-            System.out.println("메인 화면입니다."); // 여기는 나중에 수정할 예정
+            System.out.println("스파르타 코딩 클럽 수강생 관리자 메뉴입니다.\n");
             System.out.println("1. 등록하기    2. 수정하기    3. 조회하기    4. 삭제하기    5. 등급조회    0. 나가기");
             int number = Integer.parseInt(Input.inputNumber());
 
@@ -41,17 +41,17 @@ public class Management {
         switch (number) {
             case 1:
                 System.out.println("수강생을 등록하겠습니까?");
-                register.registerStudent(); // 수강생 등록하기
+                register.registerStudent();
                 break;
 
             case 2:
                 System.out.println("수강생을 수정하시겠습니까?");
-                modify.modify();            // 수강생 수정하기
+                modify.modify();
                 break;
 
             case 3:
                 System.out.println("수강생을 조회하시겠습니까?");
-                information.lookUpInformation(studentData); // 수강생 조회하기
+                information.lookUpInformation(studentData);
                 break;
 
             case 4:
@@ -60,7 +60,7 @@ public class Management {
                 break;
 
             case 5:
-                avg_calculation.avg_screen(StudentData.getInstance().getStudents());
+                averageRank.selectChoice(studentData);
                 break;
 
             default:

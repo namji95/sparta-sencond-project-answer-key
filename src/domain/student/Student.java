@@ -31,6 +31,13 @@ public class Student {
         return myCourse;
     }
 
+    public Course getCourse(long idNumber) {
+        for(Course course : myCourse) {
+            if(course.getIdNumber() == idNumber)
+                return course;
+        }
+        return null;
+    }
 
     //입력한 과목에 과목목록에 있으면 true 아니면 false
     public boolean course_check(long idNumber){
@@ -46,14 +53,20 @@ public class Student {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public List<Course> getTypeCourseList(CourseType type) {
         return new ArrayList<>(myCourse.stream().
                 filter(course -> course.getType() == type)
                 .toList());
+    }
+
+    // 특정 과목의 평균 점수를 반환
+    public double getCourseScoreList(long idNumber) {
+        for(Course course : myCourse) {
+            if(course.getIdNumber() == idNumber) {
+                return course.avgScore();
+            }
+        }
+        return 0;
     }
 
     // 상태를 재정의
@@ -76,6 +89,7 @@ public class Student {
             status = StudentStatus.RED.getStatus();
     }
 
+    // 해당 과목의 평균점수
     private double calculateAvgCourse() {
         int count = 0;
         double total = 0;

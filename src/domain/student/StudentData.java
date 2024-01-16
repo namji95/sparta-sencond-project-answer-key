@@ -1,5 +1,7 @@
 package domain.student;
 
+import domain.course.Course;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,5 +45,4 @@ public class StudentData {
                 filter(student -> student.getStatus().equals(status))
                 .toList();
     }
-
 }

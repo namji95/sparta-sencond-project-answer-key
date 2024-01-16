@@ -126,7 +126,7 @@ public class Modify {
         System.out.println("점수를 수정하였습니다!!");
     }
 
-    private void printGrades(List<Grade> grades) {
+    public static void printGrades(List<Grade> grades) {
         String format = "%-2d times | %c \n";
 
         int count = 1;

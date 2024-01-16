@@ -39,39 +39,33 @@ public class Grade {
     }
 
     public static char mandatoryRank(int score) {
-        char rank;
-
         if(score >=95 && score <=100)
-            rank = 'A';
-        else if(score >=90 && score <=94)
-            rank = 'B';
-        else if(score >=80 && score <=89)
-            rank = 'C';
-        else if(score >=70 && score <=79)
-            rank = 'D';
-        else if(score >=60 && score <=69)
-            rank = 'F';
-        else {
-            rank = 'N';
-        }
-        return rank;
+            return 'A';
+        else if(score >=90)
+            return 'B';
+        else if(score >=80)
+            return 'C';
+        else if(score >=70)
+            return 'D';
+        else if(score >=60)
+            return 'F';
+
+        return 'N';
+
     }
     public static char optionalRank(int score) {
-        char rank;
-
         if(score >=90&& score <=100)
-            rank = 'A';
-        else if(score >=80 && score <=89)
-            rank = 'B';
-        else if(score >=70 && score <=79)
-            rank = 'C';
-        else if(score >=60 && score <=69)
-            rank = 'D';
-        else if(score >=50 && score <=59)
-            rank = 'F';
-        else {
-            rank = 'N';
-        }
-        return rank;
+            return 'A';
+        else if(score >=80)
+            return 'B';
+        else if(score >=70)
+            return 'C';
+        else if(score >=60)
+            return 'D';
+        else if(score >=50)
+            return 'F';
+
+        return 'N';
+
     }
 }
